@@ -4,6 +4,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pedometer/pedometer.dart';
 
 void main() => runApp(MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
@@ -21,6 +22,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void setUpPedometer() {
+    Pedometer pedometer = Pedometer();
     Pedometer pedometer = Pedometer();
     _subscription = Pedometer.stepCountStream.listen(_onData,
         onError: _onError, onDone: _onDone, cancelOnError: true);
@@ -43,11 +45,19 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
     _subscription.cancel();
   }
+  @override
+  void dispose() {
+    super.dispose();
+    _subscription.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Step Counter app'),
@@ -58,10 +68,26 @@ class _MyAppState extends State<MyApp> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
+        body: Container(
+          color: Colors.white,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
                 decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [Color(0xFFA9F5F2), Color(0xFF01DFD7)],
+                  ),
+                  borderRadius: BorderRadius.circular(27.0),
+                ),
+                child: CircularPercentIndicator(
+                  radius: 150.0,
+                  lineWidth: 15.0,
                   gradient: const LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
@@ -77,6 +103,10 @@ class _MyAppState extends State<MyApp> {
                     Icons.directions_walk,
                     size: 50.0,
                     color: Colors.white,
+                  center: const Icon(
+                    Icons.directions_walk,
+                    size: 50.0,
+                    color: Colors.white,
                   ),
                   percent: 0.217,
                   footer: Padding(
@@ -84,7 +114,17 @@ class _MyAppState extends State<MyApp> {
                     child: Text(
                       "Pasos: $_stepCountValue",
                       style: const TextStyle(
+                  footer: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Text(
+                      "Pasos: $_stepCountValue",
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        color: Colors.purple,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                         fontSize: 18.0,
                         color: Colors.purple,
                       ),
