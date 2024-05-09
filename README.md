@@ -8,5 +8,5 @@ Team member                   | Action
 ------------------------------|-------
 Ana Paula Garcia Canales      | Edited the _*pubspec.yaml*_ to updated the libraries. 
 Jessica Gisela Amaral Franco  | Designed _*Log in*_ page. 
-Carlos Simon Amador Izaguirre |
+Carlos Simon Amador Izaguirre | Uploaded assets file
 Ana Paola Garcia Alonzo       | Uploaded initial files for flutter application. Debugged _*Log in*_ page. 
