@@ -1,0 +1,1 @@
+ C:\\src\\flutter\\digital_pedometer\\Digital_Pedometer\\.dart_tool\\flutter_build\\babd1d418696050a6a55c6fe570d50de\\native_assets.yaml: 
